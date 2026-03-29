@@ -14,7 +14,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
   if (!project) notFound();
 
   return (
-    <main className="main-content container animate-fade-in delay-1" style={{ paddingTop: '120px', paddingBottom: '5rem', maxWidth: '1600px', width: '95%' }}>
+    <main className="main-content container animate-fade-in delay-1" style={{ paddingTop: '120px', paddingBottom: '5rem', maxWidth: '1600px' }}>
       <div className="project-layout">
         <aside className="project-sidebar">
           <Link href="/#projects" className="btn btn-secondary" style={{ marginBottom: "2rem", alignSelf: "flex-start", padding: "0.5rem 1rem", fontSize: "0.85rem" }}>
@@ -34,7 +34,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
         <div className="card project-detail-card" style={{ flex: 1, padding: "0", overflow: "hidden", border: "1px solid var(--card-border)" }}>
           {project.image && <img src={project.image} alt={project.title} className="project-cover-img" />}
 
-          <div style={{ padding: "var(--spacing-detail)" }}>
+          <div className="project-content-padded">
             <div className="project-header" style={{ marginBottom: "2rem" }}>
               <h1 className="detail-title">{project.title}</h1>
               <span className="badge">{project.badge}</span>

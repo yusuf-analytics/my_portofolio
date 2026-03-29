@@ -55,9 +55,9 @@ export default async function SkillDetail({ params }: { params: Promise<{ slug: 
              <h4 className="text-gradient" style={{ borderBottom: '1px solid var(--card-border)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
                Dokumen Sertifikat
              </h4>
-             <div style={{ border: "1px solid var(--card-border)", borderRadius: "12px", overflow: "hidden", background: "var(--card-bg)", boxShadow: "0 10px 40px rgba(0,0,0,0.06)" }}>
+             <div style={{ maxWidth: "800px", margin: "0 auto", border: "1px solid var(--card-border)", borderRadius: "12px", overflow: "hidden", background: "var(--card-bg)", boxShadow: "0 10px 40px rgba(0,0,0,0.06)" }}>
                  {skill.certImage.endsWith('.pdf') ? (
-                     <iframe src={`${skill.certImage}#toolbar=0&navpanes=0&scrollbar=0`} style={{ width: "100%", aspectRatio: "1.414", minHeight: "400px", border: "none", display: "block" }} title={`Certificate ${skill.name}`} />
+                     <iframe src={`${skill.certImage}#view=Fit&toolbar=0&navpanes=0&scrollbar=0`} style={{ width: "100%", aspectRatio: "1.414", border: "none", display: "block" }} title={`Certificate ${skill.name}`} />
                  ) : (
                      <img src={skill.certImage} alt={`Certificate ${skill.name}`} style={{ width: "100%", height: "auto", display: "block" }} />
                  )}
