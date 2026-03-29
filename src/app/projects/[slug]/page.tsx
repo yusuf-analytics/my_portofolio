@@ -32,11 +32,11 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
         </aside>
 
         <div className="card project-detail-card" style={{ flex: 1, padding: "0", overflow: "hidden", border: "1px solid var(--card-border)" }}>
-          {project.image && <img src={project.image} alt={project.title} style={{ width: "100%", height: "400px", objectFit: "cover", filter: "grayscale(30%)" }} />}
+          {project.image && <img src={project.image} alt={project.title} className="project-cover-img" />}
 
           <div style={{ padding: "var(--spacing-detail)" }}>
             <div className="project-header" style={{ marginBottom: "2rem" }}>
-              <h1 style={{ fontSize: "2.8rem", marginBottom: "1rem", letterSpacing: "-0.04em" }}>{project.title}</h1>
+              <h1 className="detail-title">{project.title}</h1>
               <span className="badge">{project.badge}</span>
             </div>
 

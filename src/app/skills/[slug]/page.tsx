@@ -22,8 +22,8 @@ export default async function SkillDetail({ params }: { params: Promise<{ slug: 
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
           <img src={skill.src} alt={skill.name} style={{ width: '80px', height: '80px', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.1))' }} />
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.5rem' }}>
-              <h1 style={{ fontSize: "2.8rem", letterSpacing: "-0.04em", margin: 0 }}>{skill.name}</h1>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
+              <h1 className="detail-title" style={{ margin: 0 }}>{skill.name}</h1>
               <span style={{ background: '#10b981', color: '#fff', fontSize: '0.75rem', fontWeight: 'bold', padding: '0.2rem 0.6rem', borderRadius: '20px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Verified</span>
             </div>
             <p style={{ color: 'var(--muted)', fontSize: '1.1rem', margin: 0 }}>Official Certification & Credential</p>
@@ -34,7 +34,7 @@ export default async function SkillDetail({ params }: { params: Promise<{ slug: 
           Credential Details
         </h4>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
+        <div className="metric-grid">
            <div className="card" style={{ padding: '2rem', border: '1px solid var(--card-border)', background: 'var(--surface)' }}>
              <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.05em', marginBottom: '0.8rem' }}>Nomor Registrasi (ID)</p>
              <p style={{ fontSize: '1.25rem', fontWeight: 'bold', margin: '0', fontFamily: 'monospace', color: 'var(--foreground)' }}>{skill.certNo}</p>
