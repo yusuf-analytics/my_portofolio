@@ -2,20 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { projectsData } from "@/data/projects";
 
-const dsSkills = [
-  { name: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
-  { name: "NumPy", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" },
-  { name: "Pandas", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" },
-  { name: "Matplotlib", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg" },
-  { name: "Seaborn", src: "/seaborn-logo.svg" },
-  { name: "Scikit-learn", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" },
-  { name: "SciPy", src: "https://upload.wikimedia.org/wikipedia/commons/b/b2/SCIPY_2.svg" },
-  { name: "PostgreSQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" },
-  { name: "Tableau", src: "https://cdn.worldvectorlogo.com/logos/tableau-software.svg" },
-  { name: "Power BI", src: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" },
-  { name: "Excel", src: "/excel-logo.png" },
-  { name: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" }
-];
+import { skillsData } from "@/data/skills";
 
 export default function Home() {
   return (
@@ -59,16 +46,18 @@ export default function Home() {
         <h2 className="section-title">Technical Toolset</h2>
         <div className="card">
           <div className="skill-tags">
-            {dsSkills.map((skill, idx) => (
-              <span key={idx} className="skill-item">
-                <img 
-                  src={skill.src} 
-                  alt={`${skill.name} logo`} 
-                  width={20} 
-                  height={20} 
-                />
-                {skill.name}
-              </span>
+            {skillsData.map((skill, idx) => (
+              skill.hasDetails ? (
+                <Link href={`/skills/${skill.slug}`} key={idx} className="skill-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
+                  <img src={skill.src} alt={`${skill.name} logo`} width={20} height={20} />
+                  {skill.name}
+                </Link>
+              ) : (
+                <span key={idx} className="skill-item">
+                  <img src={skill.src} alt={`${skill.name} logo`} width={20} height={20} />
+                  {skill.name}
+                </span>
+              )
             ))}
           </div>
         </div>
@@ -78,24 +67,20 @@ export default function Home() {
       <section id="projects" className="section container animate-fade-in delay-3">
         <h2 className="section-title">Selected Work</h2>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 300px))', gap: '2rem' }}> 
+        <div className="projects-slider"> 
           {projectsData.map((proj, idx) => (
-            <Link href={`/projects/${proj.slug}`} key={idx} className="card project-card abstract-card" style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', padding: '0', overflow: 'hidden', aspectRatio: '1/1' }}>
-              <div style={{ height: '50%', width: '100%', borderBottom: '1px solid var(--card-border)' }}>
-                <img src={proj.image} alt={proj.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(60%)', transition: 'filter 0.3s' }} />
+            <Link href={`/projects/${proj.slug}`} key={idx} className="card project-card abstract-card projects-slider-card" style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', padding: '0', overflow: 'hidden', minHeight: '440px' }}>
+              <div style={{ height: '240px', width: '100%', borderBottom: '1px solid var(--card-border)', flexShrink: 0, overflow: 'hidden' }}>
+                <img src={proj.image} alt={proj.title} className="abstract-card-img" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'all 0.5s ease' }} />
               </div>
-              <div style={{ padding: '1.25rem', flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <span className="badge" style={{ display: "inline-block", marginBottom: "0.5rem" }}>{proj.badge}</span>
-                  <div className="project-header" style={{ marginBottom: "0" }}>
-                    <h3 style={{ fontSize: "1.1rem", lineHeight: "1.4", overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
-                      {proj.title}
-                    </h3>
-                  </div>
-                </div>
+              <div style={{ padding: '1.8rem', flex: '1', display: 'flex', flexDirection: 'column' }}>
+                <span className="badge" style={{ alignSelf: 'flex-start', marginBottom: '1.2rem', fontSize: '0.75rem' }}>{proj.badge}</span>
+                <h3 style={{ fontSize: "1.25rem", lineHeight: "1.4", margin: "0 0 1rem 0", color: "var(--foreground)" }}>
+                  {proj.title}
+                </h3>
                 
-                <div style={{ color: 'var(--accent)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.8rem' }}>
-                  Read Case Study &rarr;
+                <div className="abstract-card-link" style={{ marginTop: 'auto', color: 'var(--accent)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.85rem', display: 'flex', alignItems: 'center', paddingBottom: '0.2rem' }}>
+                  Read Case Study <span style={{ fontSize: '1.2rem' }}>&rarr;</span>
                 </div>
               </div>
             </Link>
@@ -107,11 +92,21 @@ export default function Home() {
       <section id="contact" className="section container animate-fade-in delay-3">
         <h2 className="section-title">Contact</h2>
         <div className="card text-center" style={{ padding: "4rem 2rem", border: "none", borderTop: "1px solid var(--card-border)", borderRadius: "0" }}>
-          <h3 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Let's work together</h3>
-          <p style={{ color: "var(--muted)", maxWidth: "600px", margin: "0 auto 2rem", fontSize: "1.05rem" }}>
-            I'm actively looking for new opportunities in Data Science and Analytics. If you're looking for someone to help interpret your data, build models, or optimize workflows, reach out!
+          <h3 className="text-gradient" style={{ fontSize: "2.8rem", marginBottom: "1.5rem", letterSpacing: "-0.03em", textAlign: "center" }}>Let's Work Together</h3>
+          <p style={{ color: "var(--muted)", maxWidth: "650px", margin: "0 auto 3rem", fontSize: "1.15rem", lineHeight: "1.8" }}>
+            I'm actively looking for new opportunities in <strong style={{ color: 'var(--foreground)' }}>Data Science</strong> and <strong style={{ color: 'var(--foreground)' }}>Analytics</strong>. If you're looking for someone to help interpret your complex data, build robust models, or optimize workflows, I'd love to connect!
           </p>
-          <a href="mailto:hello@example.com" className="btn btn-primary" style={{ padding: "1rem 2.5rem", fontSize: "1rem" }}>Get In Touch</a>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            <a href="mailto:yusuf.analytics@gmail.com" className="btn btn-primary" style={{ padding: "1rem 2.5rem", fontSize: "1rem" }}>
+              Email Me
+            </a>
+            <a href="https://linkedin.com/in/yusuf-analytics" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: "1rem 2.5rem", fontSize: "1rem" }}>
+              LinkedIn
+            </a>
+            <a href="https://medium.com/@yusuf.analytics" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: "1rem 2.5rem", fontSize: "1rem" }}>
+              Medium
+            </a>
+          </div>
         </div>
       </section>
 
