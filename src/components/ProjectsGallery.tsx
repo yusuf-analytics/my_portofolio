@@ -58,11 +58,11 @@ export default function ProjectsGallery({ projects }: { projects: Project[] }) {
       <div className="projects-slider"> 
         {filteredProjects.length > 0 ? (
           filteredProjects.map((proj, idx) => (
-            <Link href={`/projects/${proj.slug}`} key={idx} className="card project-card abstract-card projects-slider-card" style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', padding: '0', overflow: 'hidden', minHeight: '440px' }}>
-              <div style={{ height: '240px', width: '100%', borderBottom: '1px solid var(--card-border)', flexShrink: 0, overflow: 'hidden' }}>
+            <Link href={`/projects/${proj.slug}`} key={idx} className="card project-card abstract-card projects-slider-card" style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', padding: '0', overflow: 'hidden' }}>
+              <div className="project-card-img-container">
                 <img src={proj.image || "/placeholder.jpg"} alt={proj.title} className="abstract-card-img" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'all 0.5s ease' }} />
               </div>
-              <div style={{ padding: '1.8rem', flex: '1', display: 'flex', flexDirection: 'column' }}>
+              <div className="project-card-body">
                 <span className="badge" style={{ alignSelf: 'flex-start', marginBottom: '1.2rem', fontSize: '0.75rem' }}>{proj.badge}</span>
                 <h3 style={{ fontSize: "1.25rem", lineHeight: "1.4", margin: "0 0 1rem 0", color: "var(--foreground)" }}>
                   {proj.title}

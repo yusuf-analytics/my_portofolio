@@ -61,7 +61,7 @@ p { line-height: 1.6; color: var(--muted); }
 .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
 @media (max-width: 768px) { .container { padding: 0 1.25rem; } }
 .section { padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); }
-.section-title { font-size: 2rem; margin-bottom: 2rem; text-align: left; border-bottom: 2px solid var(--card-border); padding-bottom: 1rem; }
+.section-title { font-size: 2rem; margin-bottom: 2rem; text-align: left; border-bottom: 2px solid var(--card-border); padding-bottom: 1rem; scroll-margin-top: 100px; }
 
 .card {
   background: var(--card-bg);
@@ -230,11 +230,37 @@ p { line-height: 1.6; color: var(--muted); }
   flex-direction: column;
 }
 
+.skill-category-title {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  margin-bottom: 2rem; /* Increased margin for hover room */
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.skill-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  overflow-y: auto;
+  align-content: flex-start;
+  padding-top: 0.5rem; /* Space for hover transform */
+}
+
 @media (max-width: 768px) {
   .skill-category-card {
     width: 85vw;
-    height: 300px;
+    height: auto;
+    min-height: 320px;
     padding: 1.5rem;
+  }
+  
+  .skill-category-title {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    word-break: break-word;
   }
 }
 
@@ -339,10 +365,33 @@ p { line-height: 1.6; color: var(--muted); }
   flex: 0 0 auto;
   scroll-snap-align: start;
 }
+
+.project-card-img-container {
+  height: 240px;
+  width: 100%;
+  border-bottom: 1px solid var(--card-border);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.project-card-body {
+  padding: 1.8rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 @media (max-width: 768px) {
   .projects-slider-card {
-    min-width: 85vw;
-    max-width: 90vw;
+    min-width: 280px;
+    max-width: 300px;
+  }
+  
+  .project-card-img-container {
+    height: 180px;
+  }
+
+  .project-card-body {
+    padding: 1.25rem;
   }
   
   .project-detail-card p, .project-detail-card li {
@@ -357,6 +406,32 @@ p { line-height: 1.6; color: var(--muted); }
   }
   .project-content-padded {
     padding: 1.5rem !important; /* Force identical padding all sides on mobile to guarantee right-side margins */
+  }
+}
+
+/* Contact Links Horizontal Force */
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* Default for desktop */
+}
+
+@media (max-width: 768px) {
+  .contact-links {
+    flex-wrap: nowrap; /* Force horizontal on mobile */
+    gap: 0.4rem;
+    overflow-x: hidden; /* Disable sliding/scrolling */
+    justify-content: center;
+    padding-bottom: 0;
+  }
+  
+  .contact-links .btn {
+    padding: 0.6rem 0.9rem !important;
+    font-size: 0.72rem !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: 0;
   }
 }
 

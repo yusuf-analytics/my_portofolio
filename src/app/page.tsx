@@ -47,10 +47,10 @@ export default function Home() {
         <div className="projects-slider hide-scrollbar" style={{ paddingBottom: '1rem' }}>
           {Array.from(new Set(skillsData.map(s => s.category))).map((cat, i) => (
             <div key={i} className="card project-card abstract-card skill-category-card">
-              <h3 style={{ fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '0.01em', lineHeight: '1.4', marginBottom: '1.5rem', color: 'var(--muted)', flexShrink: 0 }}>
+              <h3 className="skill-category-title">
                 {cat}
               </h3>
-              <div className="skill-tags hide-scrollbar" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', overflowY: 'auto', alignContent: 'flex-start' }}>
+              <div className="skill-tags skill-tags-container hide-scrollbar">
                 {skillsData.filter(skill => skill.category === cat).map((skill, idx) => (
                   skill.hasDetails ? (
                     <Link href={`/skills/${skill.slug}`} key={idx} className="skill-item" style={{ textDecoration: 'none', cursor: 'pointer' }}>
@@ -84,14 +84,14 @@ export default function Home() {
           <p style={{ color: "var(--muted)", maxWidth: "650px", margin: "0 auto 3rem", fontSize: "1.15rem", lineHeight: "1.8" }}>
             I'm actively looking for new opportunities in <strong style={{ color: 'var(--foreground)' }}>Data & AI</strong>, and <strong style={{ color: 'var(--foreground)' }}>Web/Mobile Development</strong>. If you're looking for someone to help interpret your complex data, build robust intelligent models, or optimize workflows, I'd love to connect!
           </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <a href="mailto:yusuf.analytics@gmail.com" className="btn btn-primary" style={{ padding: "1rem 2.5rem", fontSize: "1rem" }}>
+          <div className="contact-links hide-scrollbar">
+            <a href="mailto:yusuf.analytics@gmail.com" className="btn btn-primary">
               Email Me
             </a>
-            <a href="https://linkedin.com/in/yusuf-analytics" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: "1rem 2.5rem", fontSize: "1rem" }}>
+            <a href="https://linkedin.com/in/yusuf-analytics" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
               LinkedIn
             </a>
-            <a href="https://medium.com/@yusuf.analytics" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: "1rem 2.5rem", fontSize: "1rem" }}>
+            <a href="https://medium.com/@yusuf.analytics" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
               Medium
             </a>
           </div>
