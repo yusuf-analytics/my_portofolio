@@ -224,10 +224,11 @@ p { line-height: 1.6; color: var(--muted); }
 .skill-category-card {
   flex: 0 0 auto;
   width: 320px;
-  height: 320px;
+  aspect-ratio: 1 / 1;
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* Ensure content doesn't spill out of the square */
 }
 
 .skill-category-title {
@@ -235,7 +236,7 @@ p { line-height: 1.6; color: var(--muted); }
   text-transform: uppercase;
   letter-spacing: 0.01em;
   line-height: 1.4;
-  margin-bottom: 2rem; /* Increased margin for hover room */
+  margin-bottom: 1.5rem;
   color: var(--muted);
   flex-shrink: 0;
 }
@@ -246,20 +247,21 @@ p { line-height: 1.6; color: var(--muted); }
   gap: 0.8rem;
   overflow-y: auto;
   align-content: flex-start;
-  padding-top: 0.5rem; /* Space for hover transform */
+  padding-top: 0.5rem;
+  flex: 1; /* Take up remaining space */
+  min-height: 0; /* Allow flex child to shrink and scroll */
 }
 
 @media (max-width: 768px) {
   .skill-category-card {
-    width: 85vw;
-    height: auto;
-    min-height: 320px;
+    width: 280px; /* Smaller square for mobile to fit better in slider */
+    height: 280px;
     padding: 1.5rem;
   }
   
   .skill-category-title {
     font-size: 0.85rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     word-break: break-word;
   }
 }
